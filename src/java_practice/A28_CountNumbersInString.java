@@ -3,12 +3,12 @@ package java_practice;
 import java.util.Arrays;
 import java.util.Scanner;
 
-//Find the alphabet counts in the string 
+//Find the numeric counts in the string 
 
-public class A27_CountAlphabetsInString {
+public class A28_CountNumbersInString {
 
+	static int count;
 	public static void stringMethod() {
-		int count = 0;
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Please enter the String name: ");
 		String name = sc.next();
@@ -18,7 +18,7 @@ public class A27_CountAlphabetsInString {
 		System.out.println(Arrays.toString(ch));
 
 		for (int i = 0; i < ch.length; i++) {
-			boolean answer = Character.isAlphabetic(ch[i]);
+			boolean answer = Character.isDigit(ch[i]);
 			if (answer == true) {
 				count++;
 			}
