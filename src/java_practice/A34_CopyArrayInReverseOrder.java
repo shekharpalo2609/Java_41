@@ -12,7 +12,7 @@ public class A34_CopyArrayInReverseOrder {
 	public static void copyArrayMethod() {
 
 		for (int i = array.length-1; i >= 0 ; i--) {
-			copiedArray[i] = array[i];
+			copiedArray[i] = array[array.length-1-i];
 		}
 		System.out.println("Copied Array : "+Arrays.toString(copiedArray));
 	}
