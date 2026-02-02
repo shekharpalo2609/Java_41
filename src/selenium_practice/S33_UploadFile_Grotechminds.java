@@ -1,26 +1,23 @@
-//Launch google and double click on Gmail
+//Launch https://grotechminds.com/registration/ and upload file
 package selenium_practice;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 
-public class S19_DoubleClickGoogle {
+public class S33_UploadFile_Grotechminds {
 
 	public static void main(String[] args) throws InterruptedException {
 
 		ChromeDriver driver = new ChromeDriver();
-		driver.get("https://www.google.com");
+		driver.get("https://grotechminds.com/registration/");
 		driver.manage().window().maximize();
-		Actions actions = new Actions(driver);
+		Thread.sleep(3000);
 
+		WebElement chooseFileButton = driver.findElement(By.cssSelector("#file"));
+		chooseFileButton.sendKeys("C:\\Users\\Shekhar\\Trade\\cheque axis1.png");
+		
 		Thread.sleep(2000);
-		WebElement gmail = driver.findElement(By.linkText("Gmail"));
-		actions.doubleClick(gmail).perform();
-
-		Thread.sleep(2000);
-		driver.quit();
 		System.out.println("end");
 	}
 

@@ -1,26 +1,24 @@
-//Launch google and double click on Gmail
+//Launch https://grotechminds.com/javascript-popup/ and handle javascript pop-up
 package selenium_practice;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 
-public class S19_DoubleClickGoogle {
+public class S32_Popup_Grotechminds {
 
 	public static void main(String[] args) throws InterruptedException {
 
 		ChromeDriver driver = new ChromeDriver();
-		driver.get("https://www.google.com");
+		driver.get("https://grotechminds.com/javascript-popup/");
 		driver.manage().window().maximize();
-		Actions actions = new Actions(driver);
+		Thread.sleep(3000);
 
+		WebElement clickButton = driver.findElement(By.className("btnjs"));
+		clickButton.click();
+		
 		Thread.sleep(2000);
-		WebElement gmail = driver.findElement(By.linkText("Gmail"));
-		actions.doubleClick(gmail).perform();
-
-		Thread.sleep(2000);
-		driver.quit();
+		driver.switchTo().alert().accept();
 		System.out.println("end");
 	}
 
