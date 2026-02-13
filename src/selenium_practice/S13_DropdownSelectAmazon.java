@@ -20,8 +20,8 @@ public class S13_DropdownSelectAmazon {
 
 		Select select = new Select(all);
 		//select.selectByVisibleText("Baby");
-		// select.selectByValue("search-alias=nowstore");
-		select.selectByIndex(5);
+		 select.selectByValue("search-alias=nowstore");
+		//select.selectByIndex(5);
 		System.out.println("end");
 	}
 
