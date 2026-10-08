@@ -12,8 +12,8 @@ public class S03_GoogleSearch {
 		//ChromeDriver driver = new ChromeDriver();
 		EdgeDriver driver = new EdgeDriver();
 		driver.get("https://www.google.com/") ;
-		driver.manage().window().maximize();
-		
+		//driver.manage().window().maximize();
+		driver.manage().window().fullscreen();
 		Thread.sleep(2000);
 		
 		driver.findElement(By.name("q")).sendKeys("India");

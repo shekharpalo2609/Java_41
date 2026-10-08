@@ -19,12 +19,14 @@ public class S30_TotalLinksInPage {
 		int count = links.size();
 		System.out.println("Total links in google home page is: " + count);
 
-		for (int i = 0; i < count; i++) {
-			WebElement s1 = links.get(i);
-			String linkText = s1.getText();
-			String attribute = s1.getAttribute("href");
-			System.out.println(linkText);
-			System.out.println(attribute);
+		/*
+		 * for (int i = 0; i < count; i++) { WebElement s1 = links.get(i); String
+		 * linkText = s1.getText(); String attribute = s1.getAttribute("href");
+		 * System.out.println(linkText); System.out.println(attribute); }
+		 */
+		
+		for(WebElement link : links) {
+			System.out.println(link.getText() +" -> "+ link.getAttribute("href"));
 		}
 
 	}

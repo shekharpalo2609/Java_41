@@ -1,6 +1,6 @@
 package java_practice;
 
-public class A61_ReverseStringPreservingSpaces {
+public class A62_ReverseStringPreservingSpaces {
 
 	public static void main(String[] args) {
 

@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class A62_SecondMostRepeatingCharacterInString {
+public class A64_SecondMostRepeatingCharacterInString {
 
 	public static void main(String[] args) {
 		String str = "java";

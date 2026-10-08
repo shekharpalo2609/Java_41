@@ -1,4 +1,4 @@
-package automation_practice;
+package webTable_practice;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,38 +8,21 @@ import java.util.Map;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-public class A01_DynamicWebTable {
+public class StudentTable {
 
-	static WebElement table;
-	static String filePath;
-	static WebDriver driver;
+	private WebElement table;
 
-	public static void main(String[] args) {
-		driver = new ChromeDriver();
-		filePath = "file:///" + System.getProperty("user.dir") + "/src/test/resources/students-table_1.html";
-		driver.get(filePath);
-		table = driver.findElement(By.id("studentsTable"));
-
-		List<String> result = getStudentNamesWhoseMarksAreGreaterThan50();
-		System.out.println(result);
-
-		Map.Entry<String, Integer> student = studentWithHighestMarks();
-		System.out.println("Student with highest marks: " + student.getKey() + " with marks: " + student.getValue());
-		System.out.println(student);
-
-		Map<String, Integer> map = getStudentCountFromEachCity();
-		System.out.println(map);
-		
-		System.out.println(getStudentsGroupedByCity());
-
+	// constructor — every StudentTable object needs a driver to work with
+	public StudentTable(WebDriver driver) {
+		this.table = driver.findElement(By.id("studentsTable"));
 	}
 
-	// 1.Display those student names whose marks are greater than 50
-	public static List<String> getStudentNamesWhoseMarksAreGreaterThan50() {
-		List<String> qualifiedStudent = new ArrayList<String>();
+	// 1. Display those student names whose marks are greater than 50
+	public List<String> getStudentNamesWhoseMarksAreGreaterThan50() {
+		List<String> qualifiedStudent = new ArrayList<>();
 		List<WebElement> rows = table.findElements(By.tagName("tr"));
+
 		for (int i = 1; i < rows.size(); i++) {
 			List<WebElement> columns = rows.get(i).findElements(By.tagName("td"));
 			String studentName = columns.get(0).getText();
@@ -52,12 +35,12 @@ public class A01_DynamicWebTable {
 		return qualifiedStudent;
 	}
 
-	// 2.Find the student with highest marks
-	public static Map.Entry<String, Integer> studentWithHighestMarks() {
-
+	// 2. Find the student with highest marks
+	public Map.Entry<String, Integer> studentWithHighestMarks() {
 		String topName = null;
 		int topMarks = -1;
 		List<WebElement> rows = table.findElements(By.tagName("tr"));
+
 		for (int i = 1; i < rows.size(); i++) {
 			List<WebElement> columns = rows.get(i).findElements(By.tagName("td"));
 			String studentName = columns.get(0).getText();
@@ -71,11 +54,11 @@ public class A01_DynamicWebTable {
 		return Map.entry(topName, topMarks);
 	}
 
-	// 3.Count no. of students from each city
-	public static Map<String, Integer> getStudentCountFromEachCity() {
-
-		Map<String, Integer> map = new HashMap<String, Integer>();
+	// 3. Count no. of students from each city
+	public Map<String, Integer> getStudentCountFromEachCity() {
+		Map<String, Integer> map = new HashMap<>();
 		List<WebElement> rows = table.findElements(By.tagName("tr"));
+
 		for (int i = 1; i < rows.size(); i++) {
 			List<WebElement> columns = rows.get(i).findElements(By.tagName("td"));
 			String city = columns.get(2).getText();
@@ -84,19 +67,36 @@ public class A01_DynamicWebTable {
 		return map;
 	}
 
-	// 4. Group student NAMES by City (not just counts) -> eg: Mumbai: [John, Mark]
-	public static Map<String, List<String>> getStudentsGroupedByCity() {
-		Map<String, List<String>> map = new HashMap<String, List<String>>();
+	// 4. Group student NAMES by City -> eg: Mumbai: [John, Mark]
+	public Map<String, List<String>> getStudentsGroupedByCity() {
+		Map<String, List<String>> map = new HashMap<>();
 		List<WebElement> rows = table.findElements(By.tagName("tr"));
+
 		for (int i = 1; i < rows.size(); i++) {
 			List<WebElement> columns = rows.get(i).findElements(By.tagName("td"));
 			String city = columns.get(2).getText();
 			String name = columns.get(0).getText();
-			List<String> namesForCity = map.getOrDefault(city, new ArrayList<String>());
+
+			List<String> namesForCity = map.getOrDefault(city, new ArrayList<>());
 			namesForCity.add(name);
 			map.put(city, namesForCity);
 		}
 		return map;
 	}
-
+	
+	//Fetch the records, print them and print the total number of rows in the table
+	public void displayAllRecords() {
+		List<List<String>> data = new ArrayList<>();
+		List<WebElement> rows = table.findElements(By.tagName("tr"));
+		for(int i = 1; i< rows.size(); i++) {
+			List<WebElement> columns = rows.get(i).findElements(By.tagName("td"));
+			List<String> rowData = new ArrayList<String>();
+			for(WebElement column : columns) {
+				rowData.add(column.getText());
+			}
+			data.add(rowData);
+		}
+		System.out.println("No. of rows: " +data.size());
+		System.out.println(data);
+	}
 }

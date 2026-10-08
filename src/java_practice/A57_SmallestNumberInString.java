@@ -8,7 +8,7 @@ public class A57_SmallestNumberInString {
 		int min = 9;
 		for (char ch : str.toCharArray()) {
 			if (Character.isDigit(ch)) {
-				int num = ch-'0';
+				int num = Character.getNumericValue(ch);
 				if (num < min) {
 					min = num;
 				}

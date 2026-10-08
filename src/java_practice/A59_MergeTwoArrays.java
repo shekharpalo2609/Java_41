@@ -1,6 +1,6 @@
 package java_practice;
 
-public class A58_MergeTwoArrays {
+public class A59_MergeTwoArrays {
 
 	public static void main(String[] args) {
 
