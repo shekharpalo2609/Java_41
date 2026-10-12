@@ -9,12 +9,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class StudentTable {
+public class StudentTableScenarios {
 
 	private WebElement table;
 
 	// constructor — every StudentTable object needs a driver to work with
-	public StudentTable(WebDriver driver) {
+	public StudentTableScenarios(WebDriver driver) {
 		this.table = driver.findElement(By.id("studentsTable"));
 	}
 

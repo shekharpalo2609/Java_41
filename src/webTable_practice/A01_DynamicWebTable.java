@@ -12,7 +12,7 @@ public class A01_DynamicWebTable {
 		WebDriver driver = DriverManager.getDriver();
 		driver.get(Config.getStudentsTableFilePath());
 
-		StudentTable studentTable = new StudentTable(driver);
+		StudentTableScenarios studentTable = new StudentTableScenarios(driver);
 
 		List<String> result = studentTable.getStudentNamesWhoseMarksAreGreaterThan50();
 		System.out.println(result);
